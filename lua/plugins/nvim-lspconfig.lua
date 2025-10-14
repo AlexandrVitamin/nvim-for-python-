@@ -52,6 +52,7 @@ return {
     })
 
     local lspconfig = require('lspconfig')
+    --local lspconfig = vim.lsp.config
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_attach = function(client, bufnr)
       -- Create your keybindings here...
@@ -60,7 +61,7 @@ return {
     -- Call setup on each LSP server
     require('mason-lspconfig').setup_handlers({
       function(server_name)
-        lspconfig[server_name].setup({
+        lspconfig(server_name, {
           on_attach = lsp_attach,
           capabilities = lsp_capabilities,
         })
